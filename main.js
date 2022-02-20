@@ -5,6 +5,7 @@
         { name:"JSON整形", link:"format_json.html" },
         { name:"文字置き換え", link:"char_converter.html" },
         { name:"テキストエリア", link:"text_area.html" },
+        { name:"JS実行", link:"eval_js.html" },
     ];
 
     function setHeader(){

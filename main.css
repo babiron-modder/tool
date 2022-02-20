@@ -1,0 +1,117 @@
+body{
+    margin: 0;
+    /* background-color: #202124; */
+    /* background-color: #000000; */
+    /* background-color: #3c4043; */
+    height: calc(100vh - 2px);
+    width: calc(100vw - 2px);
+    font-size: 13px;
+    border: solid #454545 1px;
+    background-color: #1e1e1e;
+    color: #aaaaaa;
+
+    /* スクロールバー非表示 */
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;       /* Firefox 対応 */
+}
+body::-webkit-scrollbar {
+    /* スクロールバー非表示 */
+    display:none;  /* Chrome, Safari 対応 */
+}
+
+header{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    background-color: #252526;
+}
+header>span{
+    height: 21px;
+    text-align: center;
+    width: 100%;
+}
+#header_btn{
+    padding: -1px 0px 0px 0px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    cursor: pointer;
+    background-color: #323232;
+    color: #dddddd;
+    outline: none;
+}
+#header_btn:hover{
+    background-color: #454545;
+}
+#header_btn:active{
+    background-color: #656565;
+}
+header>div{
+    transition: opacity 0.2s;
+    width: calc(100% - 2px);
+    max-height: calc(100vh - 26px);
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 24px;
+    
+    /* スクロールバー非表示 */
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;       /* Firefox 対応 */
+}
+header>div::-webkit-scrollbar {
+    /* スクロールバー非表示 */
+    display:none;  /* Chrome, Safari 対応 */
+}
+#header_link>a{
+    padding-left: 12px;
+    height: 20px;
+    color: #aaaaaa;
+    background-color: #323232;
+    text-decoration: none;
+    border-top: solid #656565 1px;
+    outline: none;
+}
+#header_link>a:hover{
+    background-color: #454545;
+}
+#header_link>a:active{
+    background-color: #656565;
+}
+
+main{
+    margin: 24px 5px 0px;
+    border-top:1px solid transparent;
+}
+
+h1,h2,h3,h4,p{
+    margin: 2px 0px;
+}
+textarea,input{
+    background-color: #404040;
+    color: #dddddd;
+    border-color: #323232;
+    border-width: 1px;
+    outline: none;
+    tab-size: 4;
+}
+input{
+    width: 90px;
+}
+textarea{
+    width:calc(100% - 6px);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #555555;
+}
+::-webkit-scrollbar-thumb {
+    background: #888888;
+    border-radius: 15px;
+}

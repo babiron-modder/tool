@@ -73,7 +73,7 @@
                                 case "}":
                                     --flag.indent;
                                     if(flag.indent > 0){
-                                        out_val += "\n" + in_val[i] + "\n" + "\t".repeat(flag.indent);
+                                        out_val += "\n" + "\t".repeat(flag.indent)+in_val[i];
                                     }else{
                                         out_val += "\n" +in_val[i];
                                         if(flag.indent < 0){

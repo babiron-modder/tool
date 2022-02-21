@@ -20,6 +20,7 @@ header{
     display: flex;
     align-items: end;
     background-color: #252526;
+    z-index: 1;
 }
 header>span{
     height: 21px;
@@ -58,8 +59,8 @@ header>span{
 
 header>div{
     transition: opacity 0.2s;
-    width: calc(100% - 2px);
-    max-height: calc(100vh - 26px);
+    width: 100%;
+    max-height: calc(100vh - 25px);
     overflow: scroll;
     display: flex;
     flex-direction: column;

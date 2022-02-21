@@ -5,6 +5,7 @@
         { name:"文字置き換え", link:"char_converter.html" },
         { name:"テキストエリア", link:"text_area.html" },
         { name:"JS実行", link:"eval_js.html" },
+        { name:"カレンダー/時計", link:"clock.html" },
     ];
 
     function setHeader(){

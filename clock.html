@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="toolbox.png" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        #calendar{
+            width: 100%;
+            margin: 5px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #calendar>span{
+            width: 13%;
+            text-align: center;
+            border: solid 1px #888888;
+            margin: -1px -1px 0 0;
+            /* box-shadow: -1px -1px , 1px 1px; */
+        }
+        #clock{
+            text-align: center;
+            background: #000;
+            border: solid 1px #888888;
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 0;
+        }
+        #clock_ymd{
+            margin: 10px 0px -10px;
+            font-size: 8vw;
+        }
+        #clock_hm{
+            font-size: 25vw;
+        }
+        #clock_s{
+            font-size: 12vw;
+        }
+    </style>
+    <title>カレンダー/時計</title>
+</head>
+<body>
+    <header>
+        <button id="header_reload">↻</button>
+        <span>カレンダー/時計</span>
+        <button id="header_btn">≡</button>
+        <div id="header_link"></div>
+    </header>
+    <main>
+        <div>
+            <div style="display: flex;margin-top: 5px;">
+                <button>&lt;&lt;</button>
+                <span style="flex:1;text-align: center;" id="calendar_m">&nbsp;</span>
+                <button>&gt;&gt;</button>
+            </div>
+            <div id="calendar">
+                <span style="position: absolute;padding: 63px 0px;width:90%;background-color: #000;">調整中</span>
+                <span>日</span>
+                <span>月</span>
+                <span>火</span>
+                <span>水</span>
+                <span>木</span>
+                <span>金</span>
+                <span>土</span>
+            </div>
+        </div>
+        <div id="clock">
+            <div style="margin: 10px 0px -10px;"><span id="clock_ymd">&nbsp;</span></div>
+            <span id="clock_hm">&nbsp;</span>&nbsp;<span id="clock_s">&nbsp;</span>
+        </div>
+    </main>
+    <script src="main.js"></script>
+    <script>
+        (function(){
+            function setCalendar(){
+                let calendar = document.getElementById("calendar");
+                let elem;
+                for(let i=0; i<42; ++i){
+                    elem = document.createElement("span");
+                    elem.innerHTML = i;
+                    calendar.appendChild(elem);
+                }
+            }
+            function setClock(){
+                let clock_ymd = document.getElementById("clock_ymd");
+                let clock_hm = document.getElementById("clock_hm");
+                let clock_s = document.getElementById("clock_s");
+                let calendar_m = document.getElementById("calendar_m");
+                let date;
+                setInterval(()=>{
+                    date = new Date();
+                    clock_ymd.innerHTML = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()+" ("+["日","月","火","水","木","金","土"][date.getDay()]+")";
+                    clock_hm.innerHTML = ((date.getHours()<10)?"0":"") + date.getHours() + ":" +((date.getMinutes()<10)?"0":"") + date.getMinutes();
+                    clock_s.innerHTML = ((date.getSeconds()<10)?"0":"") + date.getSeconds();
+                    calendar_m.innerHTML = (date.getMonth()+1) + "月";
+                },100);
+            }
+            function main(){
+                setCalendar();
+                setClock();
+            }
+            main();
+        })();
+    </script>
+</body>
+</html>

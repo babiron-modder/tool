@@ -3,24 +3,19 @@ body{
     /* background-color: #202124; */
     /* background-color: #000000; */
     /* background-color: #3c4043; */
-    height: calc(100vh - 2px);
-    width: calc(100vw - 2px);
+    min-height: calc(100vh - 2px);
     font-size: 13px;
     border: solid #454545 1px;
     background-color: #1e1e1e;
     color: #aaaaaa;
-
-    /* スクロールバー非表示 */
-    -ms-overflow-style: none;    /* IE, Edge 対応 */
-    scrollbar-width: none;       /* Firefox 対応 */
-}
-body::-webkit-scrollbar {
-    /* スクロールバー非表示 */
-    display:none;  /* Chrome, Safari 対応 */
 }
 
 header{
     position: fixed;
+    top: 0px;
+    left: 0px;
+    border: solid 1px #454545;
+    border-width: 1px 0px;
     width: 100%;
     display: flex;
     align-items: end;
@@ -31,7 +26,7 @@ header>span{
     text-align: center;
     width: 100%;
 }
-#header_btn{
+#header_btn,#header_reload{
     padding: -1px 0px 0px 0px;
     width: 24px;
     height: 24px;
@@ -44,9 +39,23 @@ header>span{
 #header_btn:hover{
     background-color: #454545;
 }
+#header_btn:focus{
+    background-color: #454545;
+}
 #header_btn:active{
     background-color: #656565;
 }
+
+#header_reload:hover{
+    background-color: #454545;
+}
+#header_reload:focus{
+    background-color: #454545;
+}
+#header_reload:active{
+    background-color: #656565;
+}
+
 header>div{
     transition: opacity 0.2s;
     width: calc(100% - 2px);
@@ -77,6 +86,9 @@ header>div::-webkit-scrollbar {
 #header_link>a:hover{
     background-color: #454545;
 }
+#header_link>a:focus{
+    background-color: #454545;
+}
 #header_link>a:active{
     background-color: #656565;
 }
@@ -104,24 +116,32 @@ input{
 textarea{
     width:calc(100% - 6px);
 }
+textarea:focus{
+    background-color: #454560;
+}
 button{
     background-color: #3c5baf;
 }
 button:hover{
     background-color: #4c6bbf;
 }
+button:focus{
+    background-color: #4c6bbf;
+}
 button:active{
     background-color: #5c7bdf;
 }
 
+/* スクロールバー設定 */
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
 }
 ::-webkit-scrollbar-track {
-    background: #555555;
+    background: #505050;
 }
 ::-webkit-scrollbar-thumb {
     background: #888888;
     border-radius: 15px;
+    border:solid 1px #999999;
 }

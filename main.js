@@ -1,6 +1,5 @@
 (function(){
     const HTML_FILES = [
-        { name:"_base", link:"_base.html" },
         { name:"メイン画面", link:"main.html" },
         { name:"JSON整形", link:"format_json.html" },
         { name:"文字置き換え", link:"char_converter.html" },
@@ -9,10 +8,17 @@
     ];
 
     function setHeader(){
+        let header_reload = document.getElementById("header_reload");
         let header_btn = document.getElementById("header_btn");
         let header_link = document.getElementById("header_link");
         header_link.style.display = "none";
 
+        // リロードボタンの設定
+        header_reload.addEventListener("click", ()=>{
+            location.reload();
+        });
+
+        // リンクの設定
         for(let i=0; i<HTML_FILES.length; ++i){
             let tag = document.createElement("a");
             tag.href = HTML_FILES[i].link;
@@ -20,7 +26,7 @@
             header_link.appendChild(tag);
         }
 
-        // グレーのゾーンを追加
+        // リンクの下のグレーのゾーンを追加
         let tag = document.createElement("div");
         tag.style.backgroundColor = "#252526";
         tag.style.height = "100vh";

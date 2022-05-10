@@ -21,6 +21,10 @@
             <input id="in_b" type="text" style="flex: 1;" placeholder="変換する文字">
             <span>→</span>
             <input id="in_c" type="text" style="flex: 1;" placeholder="変換後の文字">
+            <label  style="margin:0; user-select: none;" for="in_d">
+                <input type="checkbox" name="" id="in_d">
+                <span>正規表現</span>
+            </label>
         </div>
         <textarea name="" id="out_a" cols="29" rows="16" placeholder="出力"></textarea>
     </main>
@@ -31,6 +35,7 @@
                 let in_a = document.getElementById("in_a");
                 let in_b = document.getElementById("in_b");
                 let in_c = document.getElementById("in_c");
+                let in_d = document.getElementById("in_d");
                 let out_a = document.getElementById("out_a");
                 function t(str){
                     str = str.replace(/(?<!\\)\\n/g,"\n");
@@ -39,15 +44,28 @@
                     str = str.replace(/\\\\/g,"\\");
                     return str;
                 }
-                in_a.addEventListener("input", ()=>{
-                    out_a.value = in_a.value.replaceAll(t(in_b.value),t(in_c.value));
-                });
-                in_b.addEventListener("input", ()=>{
-                    out_a.value = in_a.value.replaceAll(t(in_b.value),t(in_c.value));
-                });
-                in_c.addEventListener("input", ()=>{
-                    out_a.value = in_a.value.replaceAll(t(in_b.value),t(in_c.value));
-                });
+                let replace_event = ()=>{
+                    let error_flag = false;
+                    if(in_d.checked == true){
+                        try{
+                            let regexp = new RegExp(in_b.value, 'g');
+                            out_a.value = in_a.value.replaceAll(regexp, in_c.value);
+                        }catch{
+                            error_flag = true;
+                        }
+                    }else{
+                        out_a.value = in_a.value.replaceAll(t(in_b.value),t(in_c.value));
+                    }
+                    if(error_flag){
+                        in_b.style.backgroundColor = "#aa2222";
+                    }else{
+                        in_b.style.backgroundColor = null;
+                    }
+                };
+                in_a.addEventListener("input", replace_event);
+                in_b.addEventListener("input", replace_event);
+                in_c.addEventListener("input", replace_event);
+                in_d.addEventListener("input", replace_event);
                 function OnKey( e, obj ){
                     switch(e.key){
                         case "Tab":

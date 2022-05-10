@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="toolbox.png" type="image/x-icon">
     <link rel="stylesheet" href="main.css">
+    <script src="jquery-3.6.0.min.js"></script>
     <style>
         #calendar{
             width: 100%;
@@ -13,6 +14,20 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+        }
+        #calendar>span:nth-child(-n+7){
+            background-color: #333333;
+        }
+        #calendar>.holiday_red{
+            background-color: #331111;
+            color: #cc8888;
+        }
+        #calendar>.holiday_blue{
+            background-color: #111133;
+            color: #8888cc;
+        }
+        #calendar>#holiday_today{
+            background-color: #4c6bbf;
         }
         #calendar>span{
             width: 13%;
@@ -29,7 +44,8 @@
             bottom: 0px;
             left: 0px;
             right: 0px;
-            z-index: 0;
+            z-index: 1;
+            user-select: none;
         }
         #clock_ymd{
             margin: 10px 0px -10px;
@@ -59,7 +75,6 @@
                 <button>&gt;&gt;</button>
             </div>
             <div id="calendar">
-                <span style="position: absolute;padding: 63px 0px;width:90%;background-color: #000;">調整中</span>
                 <span>日</span>
                 <span>月</span>
                 <span>火</span>
@@ -83,21 +98,36 @@
                 for(let i=0; i<42; ++i){
                     elem = document.createElement("span");
                     elem.innerHTML = i;
+                    // 日曜日は色を変える
+                    if(i%7==0){
+                        elem.className = "holiday_red";
+                    }
+                    if(i%7==6){
+                        elem.className = "holiday_blue";
+                    }
                     calendar.appendChild(elem);
                 }
+
+                // =========== 調整中の表示 ============
+                elem = document.createElement("span");
+                elem.style = "position: absolute;padding: 63px 0px;width:90%;background-color: #000;";
+                elem.innerHTML = "調整中";
+                calendar.appendChild(elem);3
+                // =====================================
             }
             function setClock(){
+                // デジタル時計の表示
                 let clock_ymd = document.getElementById("clock_ymd");
                 let clock_hm = document.getElementById("clock_hm");
                 let clock_s = document.getElementById("clock_s");
                 let calendar_m = document.getElementById("calendar_m");
-                let date;
+                let date = new Date();;
+                calendar_m.innerHTML = (date.getMonth()+1) + "月";
                 setInterval(()=>{
                     date = new Date();
                     clock_ymd.innerHTML = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()+" ("+["日","月","火","水","木","金","土"][date.getDay()]+")";
                     clock_hm.innerHTML = ((date.getHours()<10)?"0":"") + date.getHours() + ":" +((date.getMinutes()<10)?"0":"") + date.getMinutes();
                     clock_s.innerHTML = ((date.getSeconds()<10)?"0":"") + date.getSeconds();
-                    calendar_m.innerHTML = (date.getMonth()+1) + "月";
                 },100);
             }
             function main(){

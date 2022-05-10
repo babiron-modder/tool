@@ -20,7 +20,7 @@ header{
     display: flex;
     align-items: end;
     background-color: #252526;
-    z-index: 1;
+    z-index: 2;
 }
 header>span{
     height: 21px;
@@ -131,6 +131,19 @@ button:focus{
 }
 button:active{
     background-color: #5c7bdf;
+}
+
+a{
+    color: #aaaaff;
+}
+a:hover{
+    color: #aa99ff;
+}
+a:focus{
+    color: #aa99ff;
+}
+a:active{
+    color: #9999ff;
 }
 
 /* スクロールバー設定 */

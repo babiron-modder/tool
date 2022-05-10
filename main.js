@@ -6,6 +6,7 @@
         { name:"テキストエリア", link:"text_area.html" },
         { name:"JS実行", link:"eval_js.html" },
         { name:"カレンダー/時計", link:"clock.html" },
+        { name:"強震モニタ", link:"earth_quake.html" },
     ];
 
     function setHeader(){

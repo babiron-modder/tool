@@ -3,6 +3,7 @@
         { name:"メイン画面", link:"main.html" },
         { name:"JSON整形", link:"format_json.html" },
         { name:"文字置き換え", link:"char_converter.html" },
+        { name:"文字抜き出し", link:"char_searcher.html"},
         { name:"テキストエリア", link:"text_area.html" },
         { name:"JS実行", link:"eval_js.html" },
         { name:"カレンダー/時計", link:"clock.html" },

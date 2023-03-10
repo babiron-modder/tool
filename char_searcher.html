@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="toolbox.png" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
+    <title>文字抜き出し</title>
+</head>
+<body>
+    <header>
+        <button id="header_reload">↻</button>
+        <span>文字抜き出し</span>
+        <button id="header_btn">≡</button>
+        <div id="header_link"></div>
+    </header>
+    <main style="padding:6px 0 0 1px">
+        <textarea name="" id="in_a" cols="29" rows="16" placeholder="入力"></textarea>
+        <div style="display: flex;width: 100%;margin: -3px 0 3px 0;">
+            <span>正規表現：</span>
+            <input id="in_b" type="text" style="flex: 1;" placeholder="抜き出し規則">
+        </div>
+        <div style="background-color: #4c4464;color: #ccc;padding: 0 6px;">
+            <span>match: </span><span id="out_a">0</span>
+        </div>
+        <textarea name="" id="out_b" cols="29" rows="15" placeholder="出力"></textarea>
+    </main>
+    <script src="main.js"></script>
+    <script>
+        (function(){
+            function main(){
+                let in_a = document.getElementById("in_a");
+                let in_b = document.getElementById("in_b");
+                let out_a = document.getElementById("out_a");
+                let out_b = document.getElementById("out_b");
+                
+                function t(str){
+                    str = str.replace(/(?<!\\)\\n/g,"\n");
+                    str = str.replace(/(?<!\\)\\t/g,"\t");
+                    str = str.replace(/(?<!\\)\\r/g,"\r");
+                    str = str.replace(/\\\\/g,"\\");
+                    return str;
+                }
+                let search_event = ()=>{
+                    let error_flag = false;
+                    if(in_b.value == ""){
+                        out_a.textContent = 0;
+                        out_b.value = in_a.value;
+                    }else{
+                        try{
+                            let regexp = new RegExp(in_b.value, 'g');
+                            let tmp = in_a.value.match(regexp);
+                            out_a.textContent = tmp.length;
+                            out_b.value = "";
+                            for(let i=0; i<tmp.length; ++i){
+                                out_b.value += tmp[i] + "\n";
+                            }
+                        }catch(err){
+                            error_flag = true;
+                            out_b.value = "";
+                        }
+                    }
+                    if(error_flag){
+                        in_b.style.backgroundColor = "#aa2222";
+                    }else{
+                        in_b.style.backgroundColor = null;
+                    }
+                };
+                in_a.addEventListener("input", search_event);
+                in_b.addEventListener("input", search_event);
+            }
+            main();
+        })();
+    </script>
+</body>
+</html>
